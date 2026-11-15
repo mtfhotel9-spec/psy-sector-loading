@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSY SECTOR | IMPERIAL RP</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #050a12;
+    color: #dceeff;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 70% 45%, #12304b 0%, transparent 45%),
+        radial-gradient(ellipse at 20% 80%, #10233c 0%, transparent 45%),
+        linear-gradient(120deg, #03070d, #081525 60%, #030810);
+}
+
+.background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,195,255,0.025) 4px
+    );
+}
+
+.stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, #ffffff99 50%, transparent),
+        radial-gradient(1px 1px at 70% 20%, #00c3ff 50%, transparent),
+        radial-gradient(2px 2px at 80% 70%, #ffffff88 50%, transparent),
+        radial-gradient(1px 1px at 40% 80%, #00c3ff 50%, transparent),
+        radial-gradient(1px 1px at 55% 45%, #ffffff88 50%, transparent);
+    background-size: 350px 300px;
+    animation: stars 35s linear infinite;
+}
+
+@keyframes stars {
+    from { transform: translateY(0); }
+    to { transform: translateY(-300px); }
+}
+
+/* MAIN LAYOUT */
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    padding: 45px 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.logo {
+    border-left: 3px solid #00c3ff;
+    padding-left: 17px;
+}
+
+.logo h1 {
+    font-size: 38px;
+    letter-spacing: 8px;
+    font-weight: 800;
+    color: #eaf8ff;
+}
+
+.logo span {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #00c3ff;
+}
+
+.status {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #00c3ff;
+    text-align: right;
+}
+
+.status .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00c3ff;
+    box-shadow: 0 0 12px #00c3ff;
+    margin-right: 8px;
+}
+
+/* CENTER */
+
+.middle {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 70px;
+    align-items: center;
+}
+
+.archive {
+    max-width: 600px;
+}
+
+.label {
+    font-size: 11px;
+    color: #00c3ff;
+    letter-spacing: 4px;
+    margin-bottom: 18px;
+}
+
+.archive h2 {
+    font-size: 54px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.archive p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #8faabd;
+    max-width: 450px;
+}
+
+.line {
+    width: 90px;
+    height: 2px;
+    background: #00c3ff;
+    margin: 25px 0;
+    box-shadow: 0 0 15px #00c3ff;
+}
+
+.planet {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #00c3ff;
+}
+
+/* TERMINAL */
+
+.terminal {
+    background: rgba(5, 17, 29, 0.86);
+    border: 1px solid #176080;
+    padding: 25px;
+    box-shadow: 0 0 35px #001a2c;
+    position: relative;
+}
+
+.terminal::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 20px;
+    width: 75px;
+    height: 2px;
+    background: #00c3ff;
+    box-shadow: 0 0 12px #00c3ff;
+}
+
+.terminal-title {
+    color: #00c3ff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+}
+
+.data {
+    margin-bottom: 18px;
+}
+
+.data small {
+    display: block;
+    color: #58788e;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.data strong {
+    font-size: 13px;
+    font-weight: 500;
+    color: #dceeff;
+    overflow-wrap: anywhere;
+}
+
+.terminal-footer {
+    border-top: 1px solid #15364b;
+    padding-top: 15px;
+    margin-top: 20px;
+    color: #00c3ff;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* BOTTOM */
+
+.bottom {
+    width: 100%;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+#loadingStatus {
+    color: #9bb5c8;
+}
+
+#percent {
+    color: #00c3ff;
+}
+
+.progress {
+    width: 100%;
+    height: 5px;
+    background: #142536;
+    display: flex;
+    gap: 3px;
+    overflow: hidden;
+}
+
+.segment {
+    flex: 1;
+    background: #142536;
+    transition: background 0.3s;
+}
+
+.segment.active {
+    background: #00c3ff;
+    box-shadow: 0 0 12px #00c3ff;
+}
+
+.tip {
+    margin-top: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tip-text {
+    font-size: 12px;
+    color: #8faabd;
+}
+
+.tip-label {
+    color: #00c3ff;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-right: 12px;
+}
+
+.footer {
+    margin-top: 30px;
+    border-top: 1px solid #15364b;
+    padding-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    color: #476276;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+@media(max-width: 850px) {
+    .container { padding: 25px; }
+    .middle { grid-template-columns: 1fr; gap: 25px; }
+    .archive h2 { font-size: 35px; }
+    .terminal { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="stars"></div>
+
+<div class="container">
+
+    <div class="top">
+        <div class="logo">
+            <h1>PSY SECTOR</h1>
+            <span>IMPERIAL ROLEPLAY</span>
+        </div>
+
+        <div class="status">
+            <span class="dot"></span>
+            SYSTEM CONNECTING<br>
+            <span style="color:#58788e">GALACTIC NETWORK</span>
+        </div>
+    </div>
+
+    <div class="middle">
+
+        <div class="archive">
+            <div class="label">GALACTIC ARCHIVE // DATABASE</div>
+
+            <h2 id="planetName">CORUSCANT</h2>
+
+            <p id="planetDescription">
+                Столиця Галактичної Імперії.
+                Центр політичної влади та управління
+                всією Галактикою.
+            </p>
+
+            <div class="line"></div>
+
+            <div class="planet" id="planetCode">
+                PLANET ARCHIVE // 001
+            </div>
+        </div>
+
+        <div class="terminal">
+            <div class="terminal-title">
+                SYS::CONNECTION TERMINAL
+            </div>
+
+            <div class="data">
+                <small>SERVER</small>
+                <strong id="serverName">CONNECTING...</strong>
+            </div>
+
+            <div class="data">
+                <small>MAP</small>
+                <strong id="mapName">LOADING...</strong>
+            </div>
+
+            <div class="data">
+                <small>PLAYER STEAM ID</small>
+                <strong id="steamID">UNKNOWN</strong>
+            </div>
+
+            <div class="data">
+                <small>GAME MODE</small>
+                <strong id="gameMode">IMPERIAL ROLEPLAY</strong>
+            </div>
+
+            <div class="terminal-footer">
+                ENCRYPTED CONNECTION // PSY
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bottom">
+
+        <div class="progress-info">
+            <span id="loadingStatus">INITIALIZING SYSTEM...</span>
+            <span id="percent">0%</span>
+        </div>
+
+        <div class="progress" id="progressBar"></div>
+
+        <div class="tip">
+            <div class="tip-text">
+                <span class="tip-label">IMPERIAL INTEL</span>
+                <span id="tipText">Підключення до галактичної мережі...</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>PSY SECTOR // IMPERIAL RP</span>
+            <span>GALACTIC EMPIRE</span>
+            <span>VERSION 1.9.0</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* PROGRESS BAR */
+
+const segmentCount = 40;
+const progressBar = document.getElementById("progressBar");
+
+for (let i = 0; i < segmentCount; i++) {
+    const segment = document.createElement("div");
+    segment.className = "segment";
+    progressBar.appendChild(segment);
+}
+
+let downloaded = 0;
+let total = 0;
+
+function updateProgress(value) {
+    value = Math.max(0, Math.min(100, value));
+
+    document.getElementById("percent").textContent =
+        Math.floor(value) + "%";
+
+    const segments = document.querySelectorAll(".segment");
+    const active = Math.floor(value / 100 * segmentCount);
+
+    segments.forEach((segment, index) => {
+        segment.classList.toggle("active", index < active);
+    });
+}
+
+function calculateProgress() {
+    if (total > 0) {
+        updateProgress(downloaded / total * 100);
+    }
+}
+
+/* GARRY'S MOD CALLBACKS */
+
+function GameDetails(servername, serverurl, mapname,
+                     maxplayers, steamid, gamemode) {
+
+    document.getElementById("serverName").textContent =
+        servername || "PSY SECTOR";
+
+    document.getElementById("mapName").textContent =
+        mapname || "UNKNOWN";
+
+    document.getElementById("steamID").textContent =
+        steamid || "UNKNOWN";
+
+    document.getElementById("gameMode").textContent =
+        gamemode || "IMPERIAL ROLEPLAY";
+}
+
+function SetFilesNeeded(filesNeeded) {
+    document.getElementById("loadingStatus").textContent =
+        "PREPARING FILES...";
+}
+
+function SetFilesTotal(filesTotal) {
+    total = Number(filesTotal) || 0;
+    downloaded = 0;
+    calculateProgress();
+}
+
+function DownloadingFile(fileName) {
+    document.getElementById("loadingStatus").textContent =
+        "DOWNLOADING: " + (fileName || "FILE");
+}
+
+function SetFilesDownloaded(filesDownloaded) {
+    downloaded = Number(filesDownloaded) || 0;
+    calculateProgress();
+}
+
+function SetStatusChanged(status) {
+    document.getElementById("loadingStatus").textContent =
+        status || "CONNECTING...";
+}
+
+/* PLANET ARCHIVE */
+
+const planets = [
+    {
+        name: "CORUSCANT",
+        code: "PLANET ARCHIVE // 001",
+        description: "Столиця Галактичної Імперії. Центр політичної влади та управління всією Галактикою."
+    },
+    {
+        name: "TATOOINE",
+        code: "PLANET ARCHIVE // 002",
+        description: "Пустельна планета Зовнішнього Кільця. Місце контрабандистів, мисливців за головами та кримінальних угруповань."
+    },
+    {
+        name: "MUSTAFAR",
+        code: "PLANET ARCHIVE // 003",
+        description: "Вулканічна планета з екстремальними умовами. Важливий промисловий об'єкт Галактичної Імперії."
+    },
+    {
+        name: "HOTH",
+        code: "PLANET ARCHIVE // 004",
+        description: "Крижаний світ із суворим кліматом. Віддалена та небезпечна територія."
+    },
+    {
+        name: "ENDOR",
+        code: "PLANET ARCHIVE // 005",
+        description: "Лісовий супутник із густими лісами та складним рельєфом."
+    },
+    {
+        name: "KAMINO",
+        code: "PLANET ARCHIVE // 006",
+        description: "Океанічна планета, відома своїми містами над водою та технологіями клонування."
+    }
+];
+
+let planetIndex = 0;
+
+function changePlanet() {
+    planetIndex = (planetIndex + 1) % planets.length;
+
+    const planet = planets[planetIndex];
+
+    document.getElementById("planetName").textContent =
+        planet.name;
+
+    document.getElementById("planetCode").textContent =
+        planet.code;
+
+    document.getElementById("planetDescription").textContent =
+        planet.description;
+}
+
+setInterval(changePlanet, 7000);
+
+/* IMPERIAL INTEL */
+
+const tips = [
+    "Виконуйте накази командування та дотримуйтесь субординації.",
+    "Імперська безпека — відповідальність кожного солдата.",
+    "Не залишайте пост без дозволу старшого за званням.",
+    "Перевіряйте спорядження перед початком операції.",
+    "Доповідайте про підозрілу активність командуванню.",
+    "Пам'ятайте: дисципліна — основа Імперії.",
+    "Не відкривайте вогонь без ідентифікації цілі.",
+    "Дотримуйтесь радіодисципліни під час операцій.",
+    "Пораненим військовослужбовцям необхідна медична допомога.",
+    "Не розголошуйте службову інформацію.",
+    "Під час патрулювання контролюйте навколишню територію.",
+    "Виконуйте накази відповідно до свого підрозділу.",
+    "Командування відповідає за організацію операцій.",
+    "Підтримуйте порядок на військових об'єктах.",
+    "Не використовуйте службове обладнання без дозволу.",
+    "Повідомляйте про несправності техніки.",
+    "Зберігайте спокій під час бойових зіткнень.",
+    "Під час евакуації допомагайте пораненим.",
+    "Кожен солдат представляє Галактичну Імперію.",
+    "Пам'ятайте про свою присягу.",
+    "Дотримуйтесь наказів офіцерів.",
+    "Не залишайте товаришів під час операцій.",
+    "Перевіряйте частоту зв'язку перед виходом.",
+    "Служба Імперії вимагає дисципліни."
+];
+
+let tipIndex = 0;
+
+function changeTip() {
+    tipIndex = (tipIndex + 1) % tips.length;
+
+    document.getElementById("tipText").textContent =
+        tips[tipIndex];
+}
+
+setInterval(changeTip, 8000);
+
+</script>
+
+</body>
+</html>
